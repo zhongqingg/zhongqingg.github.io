@@ -214,6 +214,9 @@
       
 
 <article>
+  <head>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  </head>
   <header class="mb-16">
     <h1 class="!my-0 pb-2.5"></h1>
 
@@ -230,12 +233,19 @@
   </header>
 
   <section></section>
-  <section>extra content 231</section>
-  <div class="post-comment">
-    
-    
-  </div>
+  <section>extra content 231ere</section>
+  <section>
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'sJvSij7jzvvMMjKB3ABRx8lU-gzGzoHsz',
+            appKey: 'u02pUtYMQKAzX93N2CKIbjDi'
+        })
+    </script>
+  </section>
 
+  <section>end extra content 231ere</section>
 
 
 

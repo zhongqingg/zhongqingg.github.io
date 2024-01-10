@@ -216,6 +216,9 @@ https://github.com/yuin/goldmark https://github." />
       
 
 <article>
+  <head>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  </head>
   <header class="mb-16">
     <h1 class="!my-0 pb-2.5">About</h1>
 
@@ -236,12 +239,19 @@ https://github.com/yuin/goldmark https://github." />
 <p>Websites built with Hugo are extremely fast, secure and can be deployed anywhere including, AWS, GitHub Pages, Heroku, Netlify and any other hosting provider.</p>
 <p>Learn more and contribute on <a href="https://github.com/gohugoio">GitHub</a>.</p>
 </section>
-  <section>extra content 231</section>
-  <div class="post-comment">
-    
-    
-  </div>
+  <section>extra content 231ere</section>
+  <section>
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'sJvSij7jzvvMMjKB3ABRx8lU-gzGzoHsz',
+            appKey: 'u02pUtYMQKAzX93N2CKIbjDi'
+        })
+    </script>
+  </section>
 
+  <section>end extra content 231ere</section>
 
 
 
