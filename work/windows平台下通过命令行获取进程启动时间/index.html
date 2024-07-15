@@ -1,0 +1,338 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>windows平台下通过命令行获取进程启动时间 - Donchy</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  
+  <meta name="description" content="1. 基于Powershell的cmdlet 管理员身份运行powershell，执行以下命令：
+Get-Process | select ProcessName, Id,starttime |findstr &#34;name&#34; 其中select 后面的三个选项分别列出了进程的名称，PID 以及 启动时间。将name替换成需要查找的进程名称，即可通过findstr命令提取出目标进程。 想获取进程其他信息，可直接执行Get-Process查看可用选项，加在命令中select的选项后面即可。
+2. 基于CMD的WMIC WMIC全称Windows Management Instrumentation Command-line。运行cmd.exe，执行以下命令：
+wmic process where Name=&#34;process name&#34; get CreationDate, ProcessId 将其中的process name替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写Name=&ldquo;cmd.exe&rdquo;，而不是Name=&ldquo;cmd&rdquo;。其中CreationDate获取了进程时间，ProcessId获取了PID。 想获取进程其他信息，可直接执行wmic process，查看第一行可用选项，添加载get的选项后面即可。" />
+  <meta name="author" content="Donchy" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://zhongqingg.github.io/main.min.css" />
+
+  
+  
+  
+  
+  
+  <link rel="preload" as="image" href="https://zhongqingg.github.io/theme.png" />
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+
+  
+  
+  <script
+    defer
+    src="https://zhongqingg.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+  
+  
+
+  
+  <link rel="icon" href="https://zhongqingg.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://zhongqingg.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.121.1">
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="windows平台下通过命令行获取进程启动时间">
+<meta itemprop="description" content="1. 基于Powershell的cmdlet 管理员身份运行powershell，执行以下命令：
+Get-Process | select ProcessName, Id,starttime |findstr &#34;name&#34; 其中select 后面的三个选项分别列出了进程的名称，PID 以及 启动时间。将name替换成需要查找的进程名称，即可通过findstr命令提取出目标进程。 想获取进程其他信息，可直接执行Get-Process查看可用选项，加在命令中select的选项后面即可。
+2. 基于CMD的WMIC WMIC全称Windows Management Instrumentation Command-line。运行cmd.exe，执行以下命令：
+wmic process where Name=&#34;process name&#34; get CreationDate, ProcessId 将其中的process name替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写Name=&ldquo;cmd.exe&rdquo;，而不是Name=&ldquo;cmd&rdquo;。其中CreationDate获取了进程时间，ProcessId获取了PID。 想获取进程其他信息，可直接执行wmic process，查看第一行可用选项，添加载get的选项后面即可。"><meta itemprop="datePublished" content="2021-04-14T22:02:42+08:00" />
+<meta itemprop="dateModified" content="2021-04-14T22:02:42+08:00" />
+<meta itemprop="wordCount" content="33">
+<meta itemprop="keywords" content="" />
+  
+  <meta property="og:title" content="windows平台下通过命令行获取进程启动时间" />
+<meta property="og:description" content="1. 基于Powershell的cmdlet 管理员身份运行powershell，执行以下命令：
+Get-Process | select ProcessName, Id,starttime |findstr &#34;name&#34; 其中select 后面的三个选项分别列出了进程的名称，PID 以及 启动时间。将name替换成需要查找的进程名称，即可通过findstr命令提取出目标进程。 想获取进程其他信息，可直接执行Get-Process查看可用选项，加在命令中select的选项后面即可。
+2. 基于CMD的WMIC WMIC全称Windows Management Instrumentation Command-line。运行cmd.exe，执行以下命令：
+wmic process where Name=&#34;process name&#34; get CreationDate, ProcessId 将其中的process name替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写Name=&ldquo;cmd.exe&rdquo;，而不是Name=&ldquo;cmd&rdquo;。其中CreationDate获取了进程时间，ProcessId获取了PID。 想获取进程其他信息，可直接执行wmic process，查看第一行可用选项，添加载get的选项后面即可。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/" /><meta property="article:section" content="work" />
+<meta property="article:published_time" content="2021-04-14T22:02:42+08:00" />
+<meta property="article:modified_time" content="2021-04-14T22:02:42+08:00" />
+
+
+  
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="windows平台下通过命令行获取进程启动时间"/>
+<meta name="twitter:description" content="1. 基于Powershell的cmdlet 管理员身份运行powershell，执行以下命令：
+Get-Process | select ProcessName, Id,starttime |findstr &#34;name&#34; 其中select 后面的三个选项分别列出了进程的名称，PID 以及 启动时间。将name替换成需要查找的进程名称，即可通过findstr命令提取出目标进程。 想获取进程其他信息，可直接执行Get-Process查看可用选项，加在命令中select的选项后面即可。
+2. 基于CMD的WMIC WMIC全称Windows Management Instrumentation Command-line。运行cmd.exe，执行以下命令：
+wmic process where Name=&#34;process name&#34; get CreationDate, ProcessId 将其中的process name替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写Name=&ldquo;cmd.exe&rdquo;，而不是Name=&ldquo;cmd&rdquo;。其中CreationDate获取了进程时间，ProcessId获取了PID。 想获取进程其他信息，可直接执行wmic process，查看第一行可用选项，添加载get的选项后面即可。"/>
+
+  
+  
+  
+  <link rel="canonical" href="https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/" />
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold"
+      href="https://zhongqingg.github.io/"
+      >Donchy</a
+    >
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden"
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/post/"
+        >生活</a
+      >
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal"
+        href="/work/"
+        >工作</a
+      >
+      
+    </nav>
+    
+
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"
+    >
+      
+
+<article>
+  <head>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  </head>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">windows平台下通过命令行获取进程启动时间</h1>
+
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Apr 14, 2021</time>
+      
+      
+      
+      
+    </div>
+    
+  </header>
+
+  <section><h2 id="1-基于powershell的cmdlet">1. 基于Powershell的cmdlet</h2>
+<p>管理员身份运行powershell，执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Get-Process | <span style="color:#66d9ef">select</span> ProcessName, Id,starttime |findstr <span style="color:#e6db74">&#34;name&#34;</span>
+</span></span></code></pre></div><p>其中<em>select</em> 后面的三个选项分别列出了进程的<em>名称</em>，<em>PID</em> 以及 <em>启动时间</em>。将<em>name</em>替换成需要查找的进程名称，即可通过<em>findstr</em>命令提取出目标进程。
+想获取进程其他信息，可直接执行<em>Get-Process</em>查看可用选项，加在命令中<em>select</em>的选项后面即可。</p>
+<h2 id="2-基于cmd的wmic">2. 基于CMD的WMIC</h2>
+<p><em>WMIC</em>全称<em>Windows Management Instrumentation Command-line</em>。运行cmd.exe，执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wmic process where Name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;process name&#34;</span> get CreationDate, ProcessId
+</span></span></code></pre></div><p>将其中的<em>process name</em>替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写<em>Name=&ldquo;cmd.exe&rdquo;</em>，而不是<em>Name=&ldquo;cmd&rdquo;</em>。其中<em>CreationDate</em>获取了进程时间，<em>ProcessId</em>获取了<em>PID</em>。
+想获取进程其他信息，可直接执行<em>wmic process</em>，查看第一行可用选项，添加载<em>get</em>的选项后面即可。</p>
+</section>
+  <section>
+  <span id="/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/" class="leancloud_visitors" data-flag-title="windows平台下通过命令行获取进程启动时间">
+    <em class="post-meta-item-text">阅读量 </em>
+    <i class="leancloud-visitors-count">1000000</i>
+  </span>
+  </section>
+  <section>
+    <div id="vcomments"></div>
+    <script>
+        new Valine({
+            el: '#vcomments',
+            appId: 'sJvSij7jzvvMMjKB3ABRx8lU-gzGzoHsz',
+            appKey: 'u02pUtYMQKAzX93N2CKIbjDi',
+	    visitor: true,
+	    avatar: 'monsterid',
+	    placeholder: '寒来暑往，秋收冬藏......'
+        })
+    </script>
+  </section>
+
+
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+</article>
+
+
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+>
+  <div class="mr-auto">
+    &copy; 2024
+    <a class="link" href="https://zhongqingg.github.io/">Donchy</a>
+  </div>
+  <a class="link mx-6" href="https://gohugo.io/" rel="noopener" target="_blank"
+    >Powered by Hugo️️</a
+  >️
+  <a
+    class="link"
+    href="https://github.com/nanxiaobei/hugo-paper"
+    rel="noopener"
+    target="_blank"
+    >✎ Paper</a
+  >
+</footer>
+
+  </body>
+</html>

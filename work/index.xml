@@ -6,14 +6,14 @@
     <description>Recent content in Works on Donchy</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jul 2024 20:06:48 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Apr 2021 22:02:42 +0800</lastBuildDate>
     <atom:link href="https://zhongqingg.github.io/work/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>https://zhongqingg.github.io/work/test/</link>
-      <pubDate>Mon, 15 Jul 2024 20:06:48 +0800</pubDate>
-      <guid>https://zhongqingg.github.io/work/test/</guid>
-      <description>first work</description>
+      <title>windows平台下通过命令行获取进程启动时间</title>
+      <link>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</link>
+      <pubDate>Wed, 14 Apr 2021 22:02:42 +0800</pubDate>
+      <guid>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</guid>
+      <description>1. 基于Powershell的cmdlet 管理员身份运行powershell，执行以下命令：&#xA;Get-Process | select ProcessName, Id,starttime |findstr &amp;#34;name&amp;#34; 其中select 后面的三个选项分别列出了进程的名称，PID 以及 启动时间。将name替换成需要查找的进程名称，即可通过findstr命令提取出目标进程。 想获取进程其他信息，可直接执行Get-Process查看可用选项，加在命令中select的选项后面即可。&#xA;2. 基于CMD的WMIC WMIC全称Windows Management Instrumentation Command-line。运行cmd.exe，执行以下命令：&#xA;wmic process where Name=&amp;#34;process name&amp;#34; get CreationDate, ProcessId 将其中的process name替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写Name=&amp;ldquo;cmd.exe&amp;rdquo;，而不是Name=&amp;ldquo;cmd&amp;rdquo;。其中CreationDate获取了进程时间，ProcessId获取了PID。 想获取进程其他信息，可直接执行wmic process，查看第一行可用选项，添加载get的选项后面即可。</description>
     </item>
   </channel>
 </rss>
