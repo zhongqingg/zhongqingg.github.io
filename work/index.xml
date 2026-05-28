@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Works on Donchy</title><link>https://zhongqingg.github.io/work/</link><description>Recent content in Works on Donchy</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 14 Apr 2021 22:02:42 +0800</lastBuildDate><atom:link href="https://zhongqingg.github.io/work/index.xml" rel="self" type="application/rss+xml"/><item><title>windows平台下通过命令行获取进程启动时间</title><link>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</link><pubDate>Wed, 14 Apr 2021 22:02:42 +0800</pubDate><guid>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</guid><description>&lt;h2 id="1-基于powershell的cmdlet">1. 基于Powershell的cmdlet&lt;/h2>
+&lt;p>管理员身份运行powershell，执行以下命令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>Get-Process | &lt;span style="color:#66d9ef">select&lt;/span> ProcessName, Id,starttime |findstr &lt;span style="color:#e6db74">&amp;#34;name&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中&lt;em>select&lt;/em> 后面的三个选项分别列出了进程的&lt;em>名称&lt;/em>，&lt;em>PID&lt;/em> 以及 &lt;em>启动时间&lt;/em>。将&lt;em>name&lt;/em>替换成需要查找的进程名称，即可通过&lt;em>findstr&lt;/em>命令提取出目标进程。
+想获取进程其他信息，可直接执行&lt;em>Get-Process&lt;/em>查看可用选项，加在命令中&lt;em>select&lt;/em>的选项后面即可。&lt;/p>
+&lt;h2 id="2-基于cmd的wmic">2. 基于CMD的WMIC&lt;/h2>
+&lt;p>&lt;em>WMIC&lt;/em>全称&lt;em>Windows Management Instrumentation Command-line&lt;/em>。运行cmd.exe，执行以下命令：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>wmic process where Name&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;process name&amp;#34;&lt;/span> get CreationDate, ProcessId
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将其中的&lt;em>process name&lt;/em>替换成需要查找进程的名称即可，这里需要使用带后缀的全称——比如想要查找cmd的信息，应该写&lt;em>Name=&amp;ldquo;cmd.exe&amp;rdquo;&lt;/em>，而不是&lt;em>Name=&amp;ldquo;cmd&amp;rdquo;&lt;/em>。其中&lt;em>CreationDate&lt;/em>获取了进程时间，&lt;em>ProcessId&lt;/em>获取了&lt;em>PID&lt;/em>。
+想获取进程其他信息，可直接执行&lt;em>wmic process&lt;/em>，查看第一行可用选项，添加载&lt;em>get&lt;/em>的选项后面即可。&lt;/p></description></item><item><title>跨平台密码库同步方案：Password Safe</title><link>https://zhongqingg.github.io/work/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%AF%86%E7%A0%81%E5%BA%93%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88password-safe/</link><pubDate>Wed, 14 Apr 2021 22:02:42 +0800</pubDate><guid>https://zhongqingg.github.io/work/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%AF%86%E7%A0%81%E5%BA%93%E5%90%8C%E6%AD%A5%E6%96%B9%E6%A1%88password-safe/</guid><description>&lt;p>本指南详述如何在 Windows 与 Android 间同步 Password Safe 的 &lt;code>.psafe3&lt;/code> 数据库文件，使用 InfiniCloud WebDAV 作为云端存储，Rclone 与 FolderSync 作为同步工具。所有操作均已在实际环境中进行过验证。&lt;/p>
+&lt;hr>
+&lt;h2 id="1-password-safe-下载与安装">1. Password Safe 下载与安装&lt;/h2>
+&lt;h3 id="windows-端">Windows 端&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>下载&lt;/strong>：访问官方 GitHub Release 页面 &lt;a href="https://github.com/pwsafe/pwsafe/releases">pwsafe/releases&lt;/a>，下载最新版的 &lt;code>.exe&lt;/code> 或 &lt;code>.msi&lt;/code> 安装包（例如 &lt;code>pwsafe-3.71.0.exe&lt;/code>）。&lt;/li>
+&lt;li>&lt;strong>安装&lt;/strong>：运行安装程序，按向导完成安装，建议保持默认安装路径。&lt;/li>
+&lt;li>&lt;strong>创建数据库&lt;/strong>：首次打开时选择“新建数据库”，设置&lt;strong>主密码&lt;/strong>（务必牢记，无找回手段），并选择存储位置。建议保存在一个本地专用文件夹内，例如 &lt;code>C:\Sync\PasswordSafe\&lt;/code>。&lt;/li>
+&lt;li>&lt;strong>创建 Entry（密码记录）&lt;/strong>：
+创建 Entry 即为在库中新建一条密码记录。在软件空白处右键点击并选择 &lt;strong>Add Entry&lt;/strong>，在弹出的窗口中依次填写以下字段：
+&lt;ul>
+&lt;li>&lt;code>Group&lt;/code>（分组）：选择已有分组，或直接输入新的分组名称进行分类。&lt;/li>
+&lt;li>&lt;code>Title&lt;/code>（标题）：该条记录的名称，用于在主列表中显示和识别。&lt;/li>
+&lt;li>&lt;code>Username&lt;/code>（用户名）：登录目标网页或服务时输入的用户名。&lt;/li>
+&lt;li>&lt;code>Password&lt;/code> 及 &lt;code>Confirm Password&lt;/code>：登录目标网页时输入的密码。&lt;/li>
+&lt;li>&lt;code>URL&lt;/code>：目标网页的登录页面网址。&lt;/li>
+&lt;li>&lt;code>Notes&lt;/code> 编辑框：填写个性化的备注或额外安全提示信息。&lt;/li>
+&lt;li>填写完毕后，点击 &lt;strong>确定 (OK)&lt;/strong> 完成添加。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>基础使用提醒&lt;/strong>：
+&lt;ul>
+&lt;li>&lt;strong>复制密码&lt;/strong>：直接双击某一条目，即可快速将该条目的密码复制到系统剪贴板。&lt;/li>
+&lt;li>&lt;strong>打开网页自动输入用户名密码&lt;/strong>：在某一条目上右键点击，选择 &lt;strong>Browse to URL + AutoType&lt;/strong>。软件将调用浏览器打开对应的 URL 网址并自动尝试模拟输入账号与密码（注意：由于部分网站前端代码非标准或具有防护机制，模拟输入在少数网页上可能出现兼容性问题）。&lt;/li>
+&lt;li>&lt;strong>手动定位自动输入&lt;/strong>：若已手动打开了登录网页，可先清空网页上的用户名密码输入框，并将光标置于用户名输入框中；然后回到软件在对应条目上右键点击，选择 &lt;strong>Perform AutoType&lt;/strong>，即可自动填入凭据。&lt;/li>
+&lt;li>&lt;strong>备份&lt;/strong>：软件默认会自动生成 &lt;code>.ibak&lt;/code> 备份文件（与数据库同目录），可结合同步工具一起管理，但需注意过滤规则。&lt;/li>
+&lt;li>&lt;strong>锁文件&lt;/strong>：打开数据库时会生成临时锁文件 &lt;code>.plk&lt;/code>，关闭软件后自动删除。同步时必须排除该文件。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="android-端">Android 端&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>下载&lt;/strong>：在 Google Play 搜索 “Password Safe”，下载并安装官方安卓版本。&lt;/li>
+&lt;li>&lt;strong>初次使用&lt;/strong>：打开应用后，需要导入现有的 &lt;code>.psafe3&lt;/code> 数据库文件。你可以完成后续文件同步配置后，再选择本地的数据库文件。&lt;/li>
+&lt;li>&lt;strong>自动填充设置&lt;/strong>（红米 K70 未实现）：
+&lt;ol>
+&lt;li>进入 &lt;strong>设置 → 更多设置 → 语言与输入法 → 自动填充服务&lt;/strong>。&lt;/li>
+&lt;li>如果列表中未出现 Password Safe，可尝试：
+&lt;ul>
+&lt;li>重启手机。&lt;/li>
+&lt;li>进入 &lt;strong>应用管理 → Password Safe&lt;/strong>，开启所有相关权限（尤其是“后台弹出界面”和“自启动”）。&lt;/li>
+&lt;li>在 &lt;strong>设置 → 更多设置 → 无障碍&lt;/strong> 中，开启 Password Safe 的辅助功能服务。&lt;/li>
+&lt;li>清除应用商店缓存后重启手机。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>选择 Password Safe 作为默认自动填充服务。之后登录其他应用或网页时，可通过指纹或主密码验证完成填充。&lt;/li>
+&lt;li>注意：安卓版本目前不支持 Windows 端的 “Perform Autotype” 功能，自动填充依赖系统框架或无障碍服务。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="2-infinicloud-webdav-准备">2. InfiniCloud WebDAV 准备&lt;/h2>
+&lt;p>为了保证同步过程的安全，必须使用 InfiniCloud 的&lt;strong>应用密码&lt;/strong>而非登录密码，并获取正确的连接地址。&lt;/p></description></item></channel></rss>
