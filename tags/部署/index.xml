@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>部署 on Donchy</title><link>https://zhongqingg.github.io/tags/%E9%83%A8%E7%BD%B2/</link><description>Recent content in 部署 on Donchy</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhongqingg.github.io/tags/%E9%83%A8%E7%BD%B2/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录</title><link>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</link><pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate><guid>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</guid><description>&lt;h2 id="仓库结构">仓库结构&lt;/h2>
-&lt;pre tabindex="0">&lt;code>daydream/ # 源码仓库（需 git push）
+&lt;pre tabindex="0">&lt;code>daydream/
 ├── daydream/ # Hugo 站点根目录
 │ ├── content/
 │ ├── layouts/
