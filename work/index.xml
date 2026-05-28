@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Works on Donchy</title><link>https://zhongqingg.github.io/work/</link><description>Recent content in Works on Donchy</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 14 Apr 2021 22:02:42 +0800</lastBuildDate><atom:link href="https://zhongqingg.github.io/work/index.xml" rel="self" type="application/rss+xml"/><item><title>windows平台下通过命令行获取进程启动时间</title><link>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</link><pubDate>Wed, 14 Apr 2021 22:02:42 +0800</pubDate><guid>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</guid><description>&lt;h2 id="1-基于powershell的cmdlet">1. 基于Powershell的cmdlet&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Works on Donchy</title><link>https://zhongqingg.github.io/work/</link><description>Recent content in Works on Donchy</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhongqingg.github.io/work/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录</title><link>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</link><pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate><guid>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</guid><description>&lt;h2 id="仓库结构">仓库结构&lt;/h2>
+&lt;pre tabindex="0">&lt;code>daydream/ # 源码仓库（需 git push）
+├── daydream/ # Hugo 站点根目录
+│ ├── content/
+│ ├── layouts/
+│ ├── assets/
+│ └── themes/paper/ # git submodule
+└── .github/workflows/deploy.yml
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>zhongqingg.github.io/ # 部署仓库（由 Actions 自动写入）
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="配置过程">配置过程&lt;/h2>
+&lt;h3 id="1-创建-personal-access-token">1. 创建 Personal Access Token&lt;/h3>
+&lt;ol>
+&lt;li>打开 &lt;a href="https://github.com/settings/tokens">https://github.com/settings/tokens&lt;/a> → &lt;strong>Generate new token → Fine-grained token&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Token name&lt;/strong>: &lt;code>PAT&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Repository access&lt;/strong>: Only select repositories → 勾选 &lt;code>daydream&lt;/code> 和 &lt;code>zhongqingg.github.io&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Permissions → Contents&lt;/strong>: Read and write&lt;/li>
+&lt;li>点 &lt;strong>Generate token&lt;/strong>，复制生成的 token&lt;/li>
+&lt;/ol>
+&lt;h3 id="2-添加-token-到源码仓库-secrets">2. 添加 Token 到源码仓库 Secrets&lt;/h3>
+&lt;p>打开 &lt;a href="https://github.com/zhongqingg/daydream/settings/secrets/actions">https://github.com/zhongqingg/daydream/settings/secrets/actions&lt;/a> → &lt;strong>New repository secret&lt;/strong>&lt;/p></description></item><item><title>windows平台下通过命令行获取进程启动时间</title><link>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</link><pubDate>Wed, 14 Apr 2021 22:02:42 +0800</pubDate><guid>https://zhongqingg.github.io/work/windows%E5%B9%B3%E5%8F%B0%E4%B8%8B%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4/</guid><description>&lt;h2 id="1-基于powershell的cmdlet">1. 基于Powershell的cmdlet&lt;/h2>
 &lt;p>管理员身份运行powershell，执行以下命令：&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>Get-Process | &lt;span style="color:#66d9ef">select&lt;/span> ProcessName, Id,starttime |findstr &lt;span style="color:#e6db74">&amp;#34;name&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>其中&lt;em>select&lt;/em> 后面的三个选项分别列出了进程的&lt;em>名称&lt;/em>，&lt;em>PID&lt;/em> 以及 &lt;em>启动时间&lt;/em>。将&lt;em>name&lt;/em>替换成需要查找的进程名称，即可通过&lt;em>findstr&lt;/em>命令提取出目标进程。

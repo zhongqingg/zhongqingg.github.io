@@ -1,0 +1,125 @@
+<!doctype html><html class="not-ready lg:text-base" style=--bg:#faf8f1 lang=en-us><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录 - Donchy</title>
+<meta name=theme-color><meta name=description content="仓库结构
+daydream/                      # 源码仓库（需 git push）
+├── daydream/                  # Hugo 站点根目录
+│   ├── content/
+│   ├── layouts/
+│   ├── assets/
+│   └── themes/paper/          # git submodule
+└── .github/workflows/deploy.yml
+zhongqingg.github.io/          # 部署仓库（由 Actions 自动写入）
+
+两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。
+
+
+配置过程
+1. 创建 Personal Access Token
+
+打开 https://github.com/settings/tokens → Generate new token → Fine-grained token
+Token name: PAT
+Repository access: Only select repositories → 勾选 daydream 和 zhongqingg.github.io
+Permissions → Contents: Read and write
+点 Generate token，复制生成的 token
+
+2. 添加 Token 到源码仓库 Secrets
+打开 https://github.com/zhongqingg/daydream/settings/secrets/actions → New repository secret"><meta name=author content="Donchy"><link rel="preload stylesheet" as=style href=https://zhongqingg.github.io/main.min.css><link rel=preload as=image href=https://zhongqingg.github.io/theme.png><script defer src=https://zhongqingg.github.io/highlight.min.js onload=hljs.initHighlightingOnLoad()></script><link rel=icon href=https://zhongqingg.github.io/favicon.ico><link rel=apple-touch-icon href=https://zhongqingg.github.io/apple-touch-icon.png><meta name=generator content="Hugo 0.139.2"><meta itemprop=name content="Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录"><meta itemprop=description content="仓库结构 daydream/ # 源码仓库（需 git push） ├── daydream/ # Hugo 站点根目录 │ ├── content/ │ ├── layouts/ │ ├── assets/ │ └── themes/paper/ # git submodule └── .github/workflows/deploy.yml zhongqingg.github.io/ # 部署仓库（由 Actions 自动写入） 两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。
+配置过程 1. 创建 Personal Access Token 打开 https://github.com/settings/tokens → Generate new token → Fine-grained token Token name: PAT Repository access: Only select repositories → 勾选 daydream 和 zhongqingg.github.io Permissions → Contents: Read and write 点 Generate token，复制生成的 token 2. 添加 Token 到源码仓库 Secrets 打开 https://github.com/zhongqingg/daydream/settings/secrets/actions → New repository secret"><meta itemprop=datePublished content="2026-05-28T00:00:00+00:00"><meta itemprop=dateModified content="2026-05-28T00:00:00+00:00"><meta itemprop=wordCount content="284"><meta itemprop=keywords content="Hugo,GitHub Actions,CI/CD,部署"><meta property="og:url" content="https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/"><meta property="og:site_name" content="Donchy"><meta property="og:title" content="Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录"><meta property="og:description" content="仓库结构 daydream/ # 源码仓库（需 git push） ├── daydream/ # Hugo 站点根目录 │ ├── content/ │ ├── layouts/ │ ├── assets/ │ └── themes/paper/ # git submodule └── .github/workflows/deploy.yml zhongqingg.github.io/ # 部署仓库（由 Actions 自动写入） 两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。
+配置过程 1. 创建 Personal Access Token 打开 https://github.com/settings/tokens → Generate new token → Fine-grained token Token name: PAT Repository access: Only select repositories → 勾选 daydream 和 zhongqingg.github.io Permissions → Contents: Read and write 点 Generate token，复制生成的 token 2. 添加 Token 到源码仓库 Secrets 打开 https://github.com/zhongqingg/daydream/settings/secrets/actions → New repository secret"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="work"><meta property="article:published_time" content="2026-05-28T00:00:00+00:00"><meta property="article:modified_time" content="2026-05-28T00:00:00+00:00"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="GitHub Actions"><meta property="article:tag" content="CI/CD"><meta property="article:tag" content="部署"><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录"><meta name=twitter:description content="仓库结构 daydream/ # 源码仓库（需 git push） ├── daydream/ # Hugo 站点根目录 │ ├── content/ │ ├── layouts/ │ ├── assets/ │ └── themes/paper/ # git submodule └── .github/workflows/deploy.yml zhongqingg.github.io/ # 部署仓库（由 Actions 自动写入） 两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。
+配置过程 1. 创建 Personal Access Token 打开 https://github.com/settings/tokens → Generate new token → Fine-grained token Token name: PAT Repository access: Only select repositories → 勾选 daydream 和 zhongqingg.github.io Permissions → Contents: Read and write 点 Generate token，复制生成的 token 2. 添加 Token 到源码仓库 Secrets 打开 https://github.com/zhongqingg/daydream/settings/secrets/actions → New repository secret"><link rel=canonical href=https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/></head><body class="text-black duration-200 ease-out dark:text-white"><header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center"><div class="relative z-50 mr-auto flex items-center"><a class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold" href=https://zhongqingg.github.io/>Donchy</a><div class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]" role=button aria-label=Dark></div></div><div class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden" role=button aria-label=Menu></div><script>const htmlClass=document.documentElement.classList;setTimeout(()=>{htmlClass.remove("not-ready")},10);const btnMenu=document.querySelector(".btn-menu");btnMenu.addEventListener("click",()=>{htmlClass.toggle("open")});const metaTheme=document.querySelector('meta[name="theme-color"]'),lightBg="#faf8f1".replace(/"/g,""),setDark=e=>{metaTheme.setAttribute("content",e?"#000":lightBg),htmlClass[e?"add":"remove"]("dark"),localStorage.setItem("dark",e)},darkScheme=window.matchMedia("(prefers-color-scheme: dark)");if(htmlClass.contains("dark"))setDark(!0);else{const e=localStorage.getItem("dark");setDark(e?e==="true":darkScheme.matches)}darkScheme.addEventListener("change",e=>{setDark(e.matches)});const btnDark=document.querySelector(".btn-dark");btnDark.addEventListener("click",()=>{setDark(localStorage.getItem("dark")!=="true")})</script><div class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"><nav class="nav-menu lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6"><a class="nav-link block text-center text-2xl leading-[5rem] lg:text-base font-normal" href=/post/>生活</a>
+<a class="nav-link block text-center text-2xl leading-[5rem] lg:text-base font-semibold" href=/work/>工作</a>
+<a class="nav-link block text-center text-2xl leading-[5rem] lg:text-base font-normal" href=/paper/>学术</a></nav></div></header><main class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 pb-16 pt-12 dark:prose-invert"><article><header class=mb-16><h1 class="!my-0 pb-2.5">Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录</h1><div class="text-sm antialiased opacity-60"><time>May 28, 2026</time></div></header><section><h2 id=仓库结构>仓库结构</h2><pre tabindex=0><code>daydream/                      # 源码仓库（需 git push）
+├── daydream/                  # Hugo 站点根目录
+│   ├── content/
+│   ├── layouts/
+│   ├── assets/
+│   └── themes/paper/          # git submodule
+└── .github/workflows/deploy.yml
+</code></pre><pre tabindex=0><code>zhongqingg.github.io/          # 部署仓库（由 Actions 自动写入）
+</code></pre><blockquote><p>两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。</p></blockquote><hr><h2 id=配置过程>配置过程</h2><h3 id=1-创建-personal-access-token>1. 创建 Personal Access Token</h3><ol><li>打开 <a href=https://github.com/settings/tokens>https://github.com/settings/tokens</a> → <strong>Generate new token → Fine-grained token</strong></li><li><strong>Token name</strong>: <code>PAT</code></li><li><strong>Repository access</strong>: Only select repositories → 勾选 <code>daydream</code> 和 <code>zhongqingg.github.io</code></li><li><strong>Permissions → Contents</strong>: Read and write</li><li>点 <strong>Generate token</strong>，复制生成的 token</li></ol><h3 id=2-添加-token-到源码仓库-secrets>2. 添加 Token 到源码仓库 Secrets</h3><p>打开 <a href=https://github.com/zhongqingg/daydream/settings/secrets/actions>https://github.com/zhongqingg/daydream/settings/secrets/actions</a> → <strong>New repository secret</strong></p><ul><li><strong>Name</strong>: <code>PAT</code></li><li><strong>Secret</strong>: 粘贴刚才复制的 token</li></ul><h3 id=3-workflow-文件>3. Workflow 文件</h3><p>位置：<code>.github/workflows/deploy.yml</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Deploy Hugo to GitHub Pages</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#ae81ff>main]</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>workflow_dispatch</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>build-and-deploy</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>defaults</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>run</span>:
+</span></span><span style=display:flex><span>        <span style=color:#f92672>working-directory</span>: <span style=color:#ae81ff>./daydream</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>submodules</span>: <span style=color:#ae81ff>recursive</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-hugo@v3</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;0.139.2&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>run</span>: <span style=color:#ae81ff>hugo --minify</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>peaceiris/actions-gh-pages@v4</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>          <span style=color:#f92672>personal_token</span>: <span style=color:#ae81ff>${{ secrets.PAT }}</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>external_repository</span>: <span style=color:#ae81ff>zhongqingg/zhongqingg.github.io</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>publish_branch</span>: <span style=color:#ae81ff>main</span>
+</span></span><span style=display:flex><span>          <span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./daydream/public</span>
+</span></span></code></pre></div><hr><h2 id=踩坑记录>踩坑记录</h2><h3 id=路径问题>路径问题</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>defaults</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>run</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>working-directory</span>: <span style=color:#ae81ff>./daydream  </span> <span style=color:#75715e># Hugo 在此目录下运行</span>
+</span></span></code></pre></div><p><code>hugo --minify</code> 的输出在 <code>./daydream/public/</code>（相对工作区根目录），因此：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./daydream/public      </span> <span style=color:#75715e># ✅ 正确</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>publish_dir</span>: <span style=color:#ae81ff>./daydream/daydream/public </span> <span style=color:#75715e># ❌ 错误（多套了一层）</span>
+</span></span></code></pre></div><h3 id=子模块>子模块</h3><p>GitHub Actions 默认不拉子模块。主题 <code>themes/paper</code> 是 git submodule，必须添加：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span>- <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>with</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>submodules</span>: <span style=color:#ae81ff>recursive</span>
+</span></span></code></pre></div><p>否则 <code>resources.Get "main.css"</code> 返回 nil，构建报错。</p><h3 id=hugo-版本>Hugo 版本</h3><p>不要用 <code>hugo-version: 'latest'</code>，本地与云端版本不一致会导致各种兼容问题。锁定为本地测试通过的版本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>hugo-version</span>: <span style=color:#e6db74>&#39;0.139.2&#39;</span>
+</span></span></code></pre></div><h3 id=兼容性>兼容性</h3><p>Hugo v0.139.2 中已知的细节：</p><table><thead><tr><th>语法</th><th>状态</th><th>替代方案</th></tr></thead><tbody><tr><td><code>site.DisqusShortname</code></td><td>已弃用但可用</td><td><code>site.Config.Services.Disqus.Shortname</code>（v0.92+）</td></tr><tr><td><code>site.LanguageCode</code></td><td>已弃用但可用</td><td><code>site.Language.Locale</code>（v0.139.2 不可用，需新版）</td></tr><tr><td><code>site.Language.Locale</code></td><td>v0.139.2 不支持</td><td>继续用 <code>site.LanguageCode</code></td></tr></tbody></table><blockquote><p>弃用警告不影响运行，可以暂时忽略。</p></blockquote><hr><h2 id=日常使用>日常使用</h2><p>只需在本地编辑内容，然后：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git add -A
+</span></span><span style=display:flex><span>git commit -m <span style=color:#e6db74>&#34;xxx&#34;</span>
+</span></span><span style=display:flex><span>git push
+</span></span></code></pre></div><p>GitHub Actions 自动完成：拉取源码 → 安装 Hugo → <code>hugo --minify</code> 构建 → 推送到 <code>zhongqingg.github.io</code>。</p><p>大约 <strong>2~3 分钟</strong>后博客更新生效。</p><hr><h2 id=完整流程示意图>完整流程示意图</h2><pre tabindex=0><code>本地: git push daydream
+        │
+        ▼
+GitHub Actions 启动 Ubuntu 虚拟机
+        │
+        ▼
+actions/checkout（拉取源码 + 子模块）
+        │
+        ▼
+peaceiris/actions-hugo（安装 Hugo v0.139.2）
+        │
+        ▼
+hugo --minify（执行构建，输出 ./daydream/public/）
+        │
+        ▼
+peaceiris/actions-gh-pages（推送 public/ 到 zhongqingg.github.io）
+        │
+        ▼
+zhongqingg.github.io 更新 → CDN 缓存刷新 → 博客生效
+</code></pre></section><section class="text-sm antialiased opacity-60 mb-4">阅读量 <span class=waline-pageview-count data-path=/work/github-actions-hugo-autodeploy/></span></section><div id=waline></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css><script type=module>
+  import { init } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
+
+  init({
+    el: '#waline',
+    
+    serverURL: 'https://zhongqinggblog.netlify.app/.netlify/functions/comment/',
+    lang: 'zh-CN',
+    
+    dark: 'html[class="dark"], html[data-theme="dark"]', 
+    emoji: [
+      'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+      'https://unpkg.com/@waline/emojis@1.2.0/bilibili',
+    ],
+    
+    pageview: true,
+    requiredMeta: ['nick'],
+    locale: { placeholder: '寒来暑往，秋收冬藏……' },
+  });
+</script><style>#waline{margin-top:2rem;--waline-theme-color:#8B7E6B;--waline-active-color:#6B5F4E;--waline-text-color:#5C5142;--waline-bgcolor:#FAF8F1;--waline-bgcolor-light:#F5F0E6;--waline-bgcolor-hover:#F0ECD8;--waline-border-color:#E0DAC8;--waline-white:#FAF8F1;--waline-light-grey:#E0DAC8;--waline-header-number:#8B7E6B}#waline .wl-header .wl-header-item label{color:#5c5142}#waline .wl-preview{background:#f5f0e6}#waline .wl-card{background:#faf8f1}#waline .wl-count{color:#8b7e6b}.wl-btn{border-radius:6px!important}.wl-btn:hover{opacity:.85}</style><footer class="mt-12 flex flex-wrap"><a class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]" href=https://zhongqingg.github.io/tags/hugo>Hugo</a>
+<a class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]" href=https://zhongqingg.github.io/tags/github-actions>GitHub Actions</a>
+<a class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]" href=https://zhongqingg.github.io/tags/ci/cd>CI/CD</a>
+<a class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]" href=https://zhongqingg.github.io/tags/%E9%83%A8%E7%BD%B2>部署</a></footer></article></main><footer class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"><div class=mr-auto>&copy; 2026
+<a class=link href=https://zhongqingg.github.io/>Donchy</a></div><a class="link mx-6" href=https://gohugo.io/ rel=noopener target=_blank>Powered by Hugo️️</a>️
+<a class=link href=https://github.com/nanxiaobei/hugo-paper rel=noopener target=_blank>✎ Paper</a></footer></body></html>

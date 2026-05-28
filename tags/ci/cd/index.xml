@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI/CD on Donchy</title><link>https://zhongqingg.github.io/tags/ci/cd/</link><description>Recent content in CI/CD on Donchy</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 28 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://zhongqingg.github.io/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo + GitHub Actions 自动部署到 GitHub Pages 全程记录</title><link>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</link><pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate><guid>https://zhongqingg.github.io/work/github-actions-hugo-autodeploy/</guid><description>&lt;h2 id="仓库结构">仓库结构&lt;/h2>
+&lt;pre tabindex="0">&lt;code>daydream/ # 源码仓库（需 git push）
+├── daydream/ # Hugo 站点根目录
+│ ├── content/
+│ ├── layouts/
+│ ├── assets/
+│ └── themes/paper/ # git submodule
+└── .github/workflows/deploy.yml
+&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>zhongqingg.github.io/ # 部署仓库（由 Actions 自动写入）
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>两个独立的 GitHub 仓库。源码仓库负责存储 Hugo 源文件，部署仓库存放构建产物。&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h2 id="配置过程">配置过程&lt;/h2>
+&lt;h3 id="1-创建-personal-access-token">1. 创建 Personal Access Token&lt;/h3>
+&lt;ol>
+&lt;li>打开 &lt;a href="https://github.com/settings/tokens">https://github.com/settings/tokens&lt;/a> → &lt;strong>Generate new token → Fine-grained token&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>Token name&lt;/strong>: &lt;code>PAT&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Repository access&lt;/strong>: Only select repositories → 勾选 &lt;code>daydream&lt;/code> 和 &lt;code>zhongqingg.github.io&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Permissions → Contents&lt;/strong>: Read and write&lt;/li>
+&lt;li>点 &lt;strong>Generate token&lt;/strong>，复制生成的 token&lt;/li>
+&lt;/ol>
+&lt;h3 id="2-添加-token-到源码仓库-secrets">2. 添加 Token 到源码仓库 Secrets&lt;/h3>
+&lt;p>打开 &lt;a href="https://github.com/zhongqingg/daydream/settings/secrets/actions">https://github.com/zhongqingg/daydream/settings/secrets/actions&lt;/a> → &lt;strong>New repository secret&lt;/strong>&lt;/p></description></item></channel></rss>
